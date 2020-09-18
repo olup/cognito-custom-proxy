@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <link
+        href="https://d3oia8etllorh5.cloudfront.net/20191106223759/css/bootstrap.min.css"
+        rel="stylesheet"
+        media="screen"
+      />
+
+      <title>Signin</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+  </head>
+  <body>
+    <div class="container">
+      <div class="modal-dialog">
+        <div
+          class="modal-content background-customizable modal-content-mobile visible-md visible-lg"
+        >
+          <div>
+            <div>
+              <div class="banner-customizable">
+                <center></center>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div><div></div></div>
+            <div>
+              <div>
+                <div><div></div></div>
+                <div><div></div></div>
+              </div>
+              <div>
+                <div>
+                  <div>
+                    <span class="textDescription-customizable"
+                      >Me connecter</span
+                    >
+                    <form
+                      action="/login?{{=it.queryString}}"
+                      method="POST"
+                      name="cognitoSignInForm"
+                      class="cognito-asf"
+                      onsubmit="getAdvancedSecurityData(this);"
+                    >
+                      <input type="hidden" name="_csrf" value="{{=it.csrf}}" />
+
+                      <label for="signInFormUsername" class="label-customizable"
+                        >Username</label
+                      >
+                      <div>
+                        <input
+                          id="signInFormUsername"
+                          name="username"
+                          type="text"
+                          class="form-control inputField-customizable"
+                          placeholder="Username"
+                          autocapitalize="none"
+                          required
+                        />
+                      </div>
+
+                      <label for="signInFormPassword" class="label-customizable"
+                        >Password</label
+                      >
+                      <div>
+                        <input
+                          id="signInFormPassword"
+                          name="password"
+                          type="password"
+                          class="form-control inputField-customizable"
+                          placeholder="Password"
+                          required
+                        />
+                      </div>
+
+                      <input
+                        name="signInSubmitButton"
+                        type="Submit"
+                        value="Sign in"
+                        class="btn btn-primary submitButton-customizable"
+                        aria-label="submit"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
