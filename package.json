@@ -1,11 +1,11 @@
 {
-  "name": "fcom-sso",
+  "name": "cognito-custom-proxy",
   "version": "1.0.0",
-  "description": "Serverless webpack example using Typescript",
+  "description": "Cognito proxy to customize hosted ui",
   "main": "handler.js",
   "scripts": {
     "test": "jest",
-    "start": "STAGE=dev sls offline"
+    "dev": "STAGE=dev sls offline"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
