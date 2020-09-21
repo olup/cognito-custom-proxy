@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+        crossorigin="anonymous"
+      />
+
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+        rel="stylesheet"
+      />
+      <style>
+        body {
+          background: #eee;
+          font-family: "Montserrat", sans-serif;
+        }
+        .container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          width: 100vw;
+        }
+        .modal-dialog {
+          border-radius: 8px;
+          background: white;
+          padding: 40px;
+          width: 420px;
+        }
+
+        .input-field {
+          border: none;
+          background: #edf3ff;
+          border-radius: 5px;
+          font-size: 16px;
+          padding: 20px;
+          font-family: "Montserrat", sans-serif;
+          width: 100%;
+          box-sizing: border-box;
+          margin-bottom: 20px;
+        }
+
+        .input-field:focus {
+          outline-color: #003cc2;
+        }
+
+        .logo {
+          display: block;
+          margin: 0 auto;
+          margin-bottom: 80px;
+        }
+
+        .button {
+          font-family: Montserrat;
+          font-weight: 600;
+          font-size: 14px;
+          color: white;
+          background: #003cc2;
+          border-radius: 5px;
+          border-width: 0;
+          padding: 20px;
+          text-transform: uppercase;
+          width: 100%;
+          cursor: pointer;
+        }
+
+        .label {
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .error-message {
+          padding: 20px;
+          margin-bottom: 20px;
+          background-color: #feaeae;
+          border-radius: 8px;
+          color: #842f2f;
+        }
+
+        .logout-link {
+          display: block;
+          text-align: center;
+          margin-top: 20px;
+        }
+      </style>
+      <title>Signin</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        {{? it.errorMessage}}
+        <div class="error-message">
+          {{= it.errorMessage.map.loginErrorMessage}}
+        </div>
+        {{?}}
+        <div class="modal-dialog">
+          <div
+            class="modal-content background modal-content-mobile visible-md visible-lg"
+          >
+            <div class="modal-body">
+              <img
+                class="logo"
+                src="https://talent.freelance.com/static/media/logo-full.980cb315.svg"
+              />
+              <form
+                action="/login?{{=it.queryString}}"
+                method="POST"
+                name="cognitoSignInForm"
+                class="form"
+              >
+                <input type="hidden" name="_csrf" value="{{=it.csrf}}" />
+
+                {{? !it.isLogedIn}}
+                <label for="signInFormUsername" class="label"
+                  >Votre Email</label
+                >
+                <div>
+                  <input
+                    id="signInFormUsername"
+                    name="username"
+                    type="text"
+                    class="form-control input-field"
+                    placeholder="Email"
+                    autocapitalize="none"
+                    required
+                  />
+                </div>
+
+                <label for="signInFormPassword" class="label"
+                  >Votre mot de passe</label
+                >
+                <div>
+                  <input
+                    id="signInFormPassword"
+                    name="password"
+                    type="password"
+                    class="form-control input-field"
+                    placeholder="Mot de passe"
+                    required
+                  />
+                </div>
+
+                <input
+                  name="signInSubmitButton"
+                  type="Submit"
+                  value="Me connecter"
+                  class="btn btn-primary submitButton button"
+                  aria-label="submit"
+                />
+                {{??}}
+                <input
+                  name="signInSubmitButton"
+                  type="Submit"
+                  value="Continuer comme {{= it.user}}"
+                  class="btn btn-primary submitButton button"
+                  aria-label="submit"
+                />
+                <a class="logout-link" href="/logout?{{= it.queryString}}"
+                  >Changer d'utilisateur</a
+                >
+                {{?}}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

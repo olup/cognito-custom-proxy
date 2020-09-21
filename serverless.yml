@@ -12,33 +12,42 @@ custom:
 provider:
   name: aws
   runtime: nodejs10.x
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-1
-  # To load environment variables externally
-  # rename env.example to env.yml and uncomment
-  # the following line. Also, make sure to not
-  # commit your env.yml.
-  #
-  #environment: ${file(env.yml):${self:provider.stage}}
+  environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
   authorize:
-    handler: handler.authorize
+    handler: lambdas/authorize.handler
     events:
       - http:
           path: authorize
           method: get
 
   login:
-    handler: handler.login
+    handler: lambdas/login.handler
     events:
       - http:
           path: login
           method: get
 
-  loginPost:
-    handler: handler.postLogin
+  login-post:
+    handler: lambdas/login-post.handler
     events:
       - http:
           path: login
           method: post
+
+  logout:
+    handler: lambdas/logout.handler
+    events:
+      - http:
+          path: logout
+          method: get
+
+  discovery:
+    handler: lambdas/discovery.handler
+    events:
+      - http:
+          path: .well-known/openid-configuration
+          method: get
